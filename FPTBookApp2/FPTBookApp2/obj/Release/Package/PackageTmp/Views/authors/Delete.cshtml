@@ -1,0 +1,48 @@
+﻿@model FPTBookApp2.Models.author
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>author</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.auName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.auImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.auDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auDes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

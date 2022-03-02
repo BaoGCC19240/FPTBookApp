@@ -1,0 +1,74 @@
+﻿@model FPTBookApp2.Models.product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author.auName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author.auName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category.CatName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.CatName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

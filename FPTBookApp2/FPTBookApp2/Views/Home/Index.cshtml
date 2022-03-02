@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FPTBookApp2.Models.product>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-2">
+        <h1>Toys for teenagers<br> High Quality</h1>
+        <p>Toys bring positive benefits to teenagers in their physical and intellectual development.</p>
+        <a href="" class="btn">Explore Now &#8594;</a>
+    </div>
+    <div class="col-2">
+        <img src="~/Image/banner.png" border-radius:30px, height="400px", width="500px"/>
+    </div>
+</div>
+
+            </div>
+            </div>
+
+<h2 class="title">Latest Products</h2>
+<div class="row">
+    @if (Model == null)
+    {
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-4">
+                <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="200" height="300">
+                <h4>@Html.DisplayFor(modelitem => item.ProName)</h4>
+                <p>@Html.DisplayFor(modelitem => item.ProPrice) $</p>
+                <a href="add.php?id=<?php echo $row['pro_id'];?>&action=add&page=index" class="btn">Buy Now &#8594;</a>
+            </div>
+        }
+    }
+    
+
+</div>
+
