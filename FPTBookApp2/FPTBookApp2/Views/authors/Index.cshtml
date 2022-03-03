@@ -29,16 +29,16 @@
             @Html.DisplayFor(modelItem => item.auName)
         </td>
         <td>
-            <img src="~"
-            @Html.DisplayFor(modelItem => item.auImage)
+            <img src="~/Image/@Html.DisplayFor(modelItem => item.auImage)" />
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.auDes)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.auID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.auID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.auID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.auID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.auID }) |
+            @Html.("Delete",new { id = item.auID }, new { onclick = "return confirm('Are you sure?');" })
         </td>
     </tr>
 }

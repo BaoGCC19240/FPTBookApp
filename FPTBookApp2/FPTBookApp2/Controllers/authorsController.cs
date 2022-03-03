@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FPTBookApp2.Models;
@@ -68,46 +69,43 @@ namespace FPTBookApp2.Controllers
             return View(author);
         }
 
-        // POST: authors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "auID,auName,auImage,auDes")] author author)
+        public ActionResult Edit(author author)
         {
-            if (ModelState.IsValid)
+            if (author.ImageFile != null)
             {
-                db.Entry(author).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
+                author.ImageFile.SaveAs(path);
+                author.auImage = Path.GetFileName(author.ImageFile.FileName);
             }
-            return View(author);
+            db.Entry(author).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
         // GET: authors/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            author author = db.authors.Find(id);
-            if (author == null)
-            {
-                return HttpNotFound();
-            }
-            return View(author);
-        }
+
 
         // POST: authors/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public async Task<ActionResult> Delete(string id)
         {
-            author author = db.authors.Find(id);
-            db.authors.Remove(author);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                author author = db.authors.Find(id);
+                db.authors.Remove(author);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("There are products of this author in the system, please check again !!!");
+                return RedirectToAction("Index");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

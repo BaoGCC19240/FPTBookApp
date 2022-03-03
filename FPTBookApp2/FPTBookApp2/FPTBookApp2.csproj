@@ -236,7 +236,7 @@
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\authors\Create.cshtml" />
-    <Content Include="Views\authors\Delete.cshtml" />
+    <Content Include="Views\Foo\Delete.cshtml" />
     <Content Include="Views\authors\Details.cshtml" />
     <Content Include="Views\authors\Edit.cshtml" />
     <Content Include="Views\authors\Index.cshtml" />
@@ -254,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Foo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

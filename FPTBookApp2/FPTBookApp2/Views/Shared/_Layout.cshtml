@@ -7,6 +7,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/style.css")
+    <script language="javascript">
+        function Confirm() {
+            if (!window.confirm('Are you sure?')) {
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="header">
