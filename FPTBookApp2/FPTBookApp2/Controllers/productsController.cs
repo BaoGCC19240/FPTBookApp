@@ -90,14 +90,19 @@ namespace FPTBookApp2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(product product)
         {
-            product PDmodify = db.products.Find(product.ProID);
+            product old = db.products.Find(product.ProID);
             if (product.myfile != null)
             {
                 string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(product.myfile.FileName));
                 product.myfile.SaveAs(path);
-                PDmodify.ProImage = Path.GetFileName(product.myfile.FileName);
+                product.ProImage = Path.GetFileName(product.myfile.FileName);
             }
-                db.Entry(PDmodify).State = EntityState.Modified;
+            else
+            { 
+                product.ProImage = old.ProImage;
+            }
+            db.Entry(old).State = EntityState.Detached;
+            db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             

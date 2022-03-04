@@ -50,8 +50,8 @@ namespace FPTBookApp2.Controllers
                 author.auImage = Path.GetFileName(author.ImageFile.FileName);
             }
             db.authors.Add(author);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: authors/Edit/5
@@ -73,38 +73,30 @@ namespace FPTBookApp2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(author author)
         {
+            author old = db.authors.Find(author.auID);
             if (author.ImageFile != null)
             {
                 string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
                 author.ImageFile.SaveAs(path);
-                author.auImage = Path.GetFileName(author.ImageFile.FileName);
+                old.auImage = Path.GetFileName(author.ImageFile.FileName);
             }
-            db.Entry(author).State = EntityState.Modified;
+            else
+            {
+
+                old.auImage = author.auImage;
+            }
+            db.Entry(old).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
 
         }
 
-        // GET: authors/Delete/5
-
-
-        // POST: authors/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
-            try
-            {
-                author author = db.authors.Find(id);
-                db.authors.Remove(author);
+                author obj = db.authors.Find(id);
+                db.authors.Remove(obj);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("There are products of this author in the system, please check again !!!");
-                return RedirectToAction("Index");
-            }
 
         }
 
