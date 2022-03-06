@@ -236,7 +236,6 @@
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\authors\Create.cshtml" />
-    <Content Include="Views\Foo\Delete.cshtml" />
     <Content Include="Views\authors\Details.cshtml" />
     <Content Include="Views\authors\Edit.cshtml" />
     <Content Include="Views\authors\Index.cshtml" />
@@ -251,6 +250,7 @@
     <Content Include="Views\products\Details.cshtml" />
     <Content Include="Views\products\Edit.cshtml" />
     <Content Include="Views\products\Index.cshtml" />
+    <Content Include="Views\Foo\Sortbycat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

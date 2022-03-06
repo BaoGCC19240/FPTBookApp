@@ -63,7 +63,8 @@ namespace FPTBookApp2.Controllers
             var obj = db.Accounts.Where(x => x.AccID.Equals(accid) && x.pass.Equals(ch_pass)).FirstOrDefault();
             if (obj != null)
             {
-                Session["fullname"] = db.Accounts.FirstOrDefault().fullname;
+                Session["fullname"] = obj.fullname;
+                Session["state"] = Convert.ToInt32(obj.state);
                 return RedirectToAction("Index", "Home");
             }
             Response.Write("<script>alert('Login failed, please try again');</script>");

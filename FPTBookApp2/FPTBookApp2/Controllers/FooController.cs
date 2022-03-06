@@ -14,7 +14,13 @@ namespace FPTBookApp2.Controllers
         [ChildActionOnly]
         public ActionResult Nav()
         {
-            return PartialView("_Nav", db.categories);
+            return PartialView("_Nav", db.categories.ToList());
+        }
+
+        public ActionResult Sortbycat(string id)
+        {
+            var res = db.products.Where(x => x.CatID == id);
+           return View(res.ToList());
         }
     }
 }

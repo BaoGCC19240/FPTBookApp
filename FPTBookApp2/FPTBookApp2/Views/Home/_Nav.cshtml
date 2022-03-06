@@ -6,11 +6,10 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-contenta">
-            @foreach (var catitem in Model)
+            @foreach (var item in Model)
             {
-                <a>@Html.DisplayFor(m => catitem.CatName)</a>
+                <a href="@Url.Action("Sortbycat","Foo", new {id = item.CatID})">@Html.DisplayFor(m => item.CatName)</a>
             }
-
         </div>
 
     </div>

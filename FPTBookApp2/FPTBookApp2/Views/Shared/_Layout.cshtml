@@ -21,15 +21,22 @@
             <div class="navbar">
                 <div class="logo">
 
-                    <img src="~/Image/logo.png" width="170px", height="85px"/>
+                    <img src="~/Image/logo.png" width="170px" , height="85px" />
                 </div>
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
                 <nav>
                     <ul id="MenuItems">
                         <li>
                             @Html.ActionLink("Home", "Index", "Home")
                         </li>
-                        @Html.Action("Nav","Home")
-
+                        @Html.Action("Nav", "Home")
+                        @if (Convert.ToInt32(Session["state"]) ==1)
+                        {
                             <li>
                                 <div class="dropdowna">
                                     <button class="dropbtna">
@@ -45,34 +52,40 @@
 
                                 </div>
                             </li>
+                        }
+                        else
+                        {
 
-                            @if (Session["fullname"] == null)
-                            {
-
-                                <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
-                                <li>@Html.ActionLink("Register", "Register", "Accounts")</li>
-
-                            }
-                            else
-                            {
-                                <li>
-                                    <a href="?page=update_customer">
-                                        <i class="fa fa-user" aria-hidden="true">
-                                            Hi, @Session["fullname"]
-                                        </i>
-                                    </a>
-                                </li>
-                                <li>@Html.ActionLink("Logout", "Logout", "Accounts")</li>
-
-                            }
+                        }
 
 
-                        </ul>
-                    </nav>
-                    <a href="?page=cart"><img src="~/Image/cart.png" width="30px" height="30px"></a>
-                    <img src="images/menu.png" class="menu-icon"
-                         onclick="menutoggle()">
-                </div>
+                        @if (Session["fullname"] == null)
+                        {
+
+                            <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
+                            <li>@Html.ActionLink("Register", "Register", "Accounts")</li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="?page=update_customer">
+                                    <i class="fa fa-user" aria-hidden="true">
+                                        Hi, @Session["fullname"]
+                                    </i>
+                                </a>
+                            </li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Accounts")</li>
+
+                        }
+
+
+                    </ul>
+                </nav>
+                <a href="?page=cart"><img src="~/Image/cart.png" width="30px" height="30px"></a>
+                <img src="images/menu.png" class="menu-icon"
+                     onclick="menutoggle()">
+            </div>
                 <div class="container body-content">
                     @RenderBody()
                     <hr />
