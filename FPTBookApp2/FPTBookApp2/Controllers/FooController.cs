@@ -22,5 +22,11 @@ namespace FPTBookApp2.Controllers
             var res = db.products.Where(x => x.CatID == id);
            return View(res.ToList());
         }
+
+        public ActionResult Search (string searchString)
+        {
+            var res = db.products.Where(x => x.ProName.Contains(searchString));
+            return View(res.ToList());
+        }
     }
 }
