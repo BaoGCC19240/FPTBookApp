@@ -162,10 +162,12 @@ body{
 nav{
     flex: 1;
     text-align: right;
+    margin-top:15px;
 }
 nav ul{
     display: block;
     list-style-type: none;
+    margin-bottom:25px;
 }
 nav ul li{
     display: inline-block;
