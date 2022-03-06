@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using FPTBookApp2.Models;
 
 namespace FPTBookApp2.Controllers
@@ -73,31 +74,56 @@ namespace FPTBookApp2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(author author)
         {
-            author old = db.authors.Find(author.auID);
-            if (author.ImageFile != null)
+            try
             {
-                string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
-                author.ImageFile.SaveAs(path);
-                old.auImage = Path.GetFileName(author.ImageFile.FileName);
+                author old = db.authors.Find(author.auID);
+                if (author.ImageFile != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
+                    author.ImageFile.SaveAs(path);
+                    author.auImage = Path.GetFileName(author.ImageFile.FileName);
+                }
+                else
+                {
+
+                    author.auImage = old.auImage;
+                }
+                db.Entry(old).State = EntityState.Detached;
+                db.Entry(author).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
+            catch(Exception)
             {
 
-                old.auImage = author.auImage;
+                return RedirectToAction("Index");
             }
-            db.Entry(old).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+                
 
         }
 
+
         public ActionResult Delete(string id)
         {
+            try
+            {
                 author obj = db.authors.Find(id);
                 db.authors.Remove(obj);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                SetAlert("This author could not be removed, please try again later!!!");
+                return RedirectToAction("Index");
+            }
+            
 
+        }
+        protected void SetAlert(string text)
+        {
+            TempData["AlertMessage"] = text;
         }
 
         protected override void Dispose(bool disposing)

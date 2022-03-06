@@ -409,7 +409,7 @@ input:focus{
 table {
     width: 2000px;
     border-collapse: collapse;
-    margin-top: 50px;
+    margin-top: 0px;
     border: 2px solid #ff523b;
 }
 .cart-info{
