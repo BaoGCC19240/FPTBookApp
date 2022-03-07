@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "checkout";
+}
+
+<h2>checkout</h2>
+@if (TempData["cart"] != null)
+{
+
+
+    <table class="table table-responsive">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>BILL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in TempData["cart"] as List<FPTBookApp2.Models.OrderDetail>)
+            {
+
+                <tr>
+                    <td>@item.ProID</td>
+
+                    <td>@item.price</td>
+                    <td>@item.qty</td>
+
+
+                </tr>
+
+            }
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>@TempData["total"]</td>
+
+            </tr>
+        </tfoot>
+
+    </table>
+}

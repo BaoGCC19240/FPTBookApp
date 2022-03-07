@@ -25,12 +25,44 @@ namespace FPTBookApp2.Controllers
             return PartialView("_Nav", db.categories);
         }
 
-        public ActionResult viewDetail(string id)
+        public ActionResult AddtoCart(string id)
         {
             var obj = db.products.Find(id);
             return View(obj);
         }
 
+        List<OrderDetail> lstOD = new List<OrderDetail>();
+        [HttpPost]
+        public ActionResult AddtoCart(string id, string qty)
+        {
+            var p = db.products.Find(id);
+            OrderDetail ord = new OrderDetail();
+
+            ord.ProID = p.ProID;
+            if(qty != null){
+                ord.qty = Convert.ToInt32(qty);
+            }
+            else
+            {
+                ord.qty = 1;
+            }
+            ord.price = p.ProPrice;
+
+            lstOD.Add(ord);
+
+            TempData["cart"] = lstOD;
+            TempData.Keep();
+            return RedirectToAction("Index");
+            
+        }
+
+        public ActionResult checkout()
+        {
+            TempData.Keep();
+
+
+            return View(); 
+        }
 
     }
 }

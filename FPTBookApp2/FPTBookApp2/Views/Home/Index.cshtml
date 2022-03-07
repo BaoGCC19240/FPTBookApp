@@ -31,7 +31,7 @@
                 <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="200" height="300">
                 <h4>@Html.DisplayFor(modelitem => item.ProName)</h4>
                 <p>@Html.DisplayFor(modelitem => item.ProPrice) $</p>
-                <button class="btn"> @Html.ActionLink("Buy Now", "viewDetail", new { id = item.ProID })</button>
+                <button class="btn"> @Html.ActionLink("Buy Now", "AddtoCart", new { id = item.ProID })</button>
             </div>
         }
     }

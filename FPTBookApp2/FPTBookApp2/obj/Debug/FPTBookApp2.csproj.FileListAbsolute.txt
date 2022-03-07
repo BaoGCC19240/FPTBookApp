@@ -162,3 +162,5 @@ C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.csproj.CoreCompileInputs.cache
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.dll
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.pdb
+C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.Properties.Resources.resources
+C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.csproj.GenerateResource.cache
