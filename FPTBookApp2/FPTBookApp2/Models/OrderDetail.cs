@@ -14,19 +14,13 @@ namespace FPTBookApp2.Models
     
     public partial class OrderDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderDetail()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
         public int ID { get; set; }
         public string ProID { get; set; }
         public int price { get; set; }
         public int qty { get; set; }
+        public Nullable<int> OrderID { get; set; }
     
         public virtual product product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

@@ -146,20 +146,24 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>FPTdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FPTdb.Context.cs">
+    <Compile Include="Models\FPTdb.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>FPTdb.Context.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Models\FPTdb.cs">
+    <Compile Include="Models\FPTdb.cs" />
+    <Compile Include="Models\FPTdb.designer.cs">
+      <DependentUpon>FPTdb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FPTdb1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>FPTdb.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Models\FPTdb.Designer.cs">
-      <DependentUpon>FPTdb.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Models\FPTdb1.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPTdb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>FPTdb.tt</DependentUpon>
@@ -168,9 +172,6 @@
       <DependentUpon>FPTdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\product.cs">
-      <DependentUpon>FPTdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>FPTdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -195,20 +196,22 @@
     <Content Include="Image\logo.png" />
     <Content Include="Image\sach.png" />
     <Content Include="Models\FPTdb.Context.tt">
-      <DependentUpon>FPTdb.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FPTdb.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\FPTdb.edmx.diagram">
-      <DependentUpon>FPTdb.edmx</DependentUpon>
+      <LastGenOutput>FPTdb.Context1.cs</LastGenOutput>
     </Content>
     <Content Include="Models\FPTdb.tt">
-      <DependentUpon>FPTdb.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FPTdb.cs</LastGenOutput>
+      <LastGenOutput>FPTdb1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\FPTdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPTdb1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FPTdb.edmx.diagram">
+      <DependentUpon>FPTdb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -251,14 +254,15 @@
     <Content Include="Views\products\Details.cshtml" />
     <Content Include="Views\products\Edit.cshtml" />
     <Content Include="Views\products\Index.cshtml" />
-    <Content Include="Views\Foo\Sortbycat.cshtml" />
-    <Content Include="Views\Foo\Search.cshtml" />
+    <Content Include="Views\Home\Sortbycat.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\AddtoCart.cshtml" />
     <Content Include="Views\Home\checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="NewFolder1\" />
+    <Folder Include="Views\Foo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -281,12 +285,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\FPTdb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FPTdb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

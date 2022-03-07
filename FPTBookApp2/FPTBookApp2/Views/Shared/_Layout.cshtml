@@ -25,7 +25,7 @@
                 </div>
                 <nav class="navbar navbar-light bg-light">
                     <div class="form-inline">
-                        @using (Html.BeginForm("Search", "Foo"))
+                        @using (Html.BeginForm("Search", "Home"))
                         {
                         <p>
                             <input class="form-control mr-sm-2" name="searchString" type="search" placeholder="Search" aria-label="Search">
@@ -88,7 +88,7 @@
 
                     </ul>
                 </nav>
-                <h3 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-info">@Html.ActionLink("Check Out", "checkout", "Home")</span></h3>
+                <a href="@Url.Action("checkout","Home")" class="btn"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                 <img src="images/menu.png" class="menu-icon"
                      onclick="menutoggle()">
             </div>

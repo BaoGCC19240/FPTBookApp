@@ -25,32 +25,58 @@ namespace FPTBookApp2.Controllers
             return PartialView("_Nav", db.categories);
         }
 
+
+
+        public ActionResult Sortbycat(string id)
+        {
+            var res = db.products.Where(x => x.CatID == id);
+            return View(res.ToList());
+        }
+
+        public ActionResult Search(string searchString)
+        {
+            if (searchString == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var res = db.products.Where(x => x.ProName.Contains(searchString));
+                return View(res.ToList());
+            }
+
+        }
+
         public ActionResult AddtoCart(string id)
         {
             var obj = db.products.Find(id);
             return View(obj);
         }
 
-        List<OrderDetail> lstOD = new List<OrderDetail>();
+        List<product> lstOD = new List<product>();
         [HttpPost]
-        public ActionResult AddtoCart(string id, string qty)
+        public ActionResult AddtoCart(string id, int qty)
         {
-            var p = db.products.Find(id);
-            OrderDetail ord = new OrderDetail();
-
-            ord.ProID = p.ProID;
-            if(qty != null){
-                ord.qty = Convert.ToInt32(qty);
+            List<product> checkList = TempData["cart"] as List<product>;
+            product pr = db.products.Find(id);
+            pr.ProQty = qty;
+            if (TempData["cart"] == null)
+            {
+                lstOD.Add(pr);
+                TempData["cart"] = lstOD;
             }
             else
             {
-                ord.qty = 1;
+                List<product> lstOD2 = TempData["cart"] as List<product>;
+                if(lstOD2.Find(x => x.ProID == id) != null)
+                {
+                    product ch = lstOD2.Find(x => x.ProID == id);
+                    pr.ProQty = ch.ProQty + qty; ;
+                    lstOD2.Remove(ch);
+                }
+                lstOD2.Add(pr);
+                TempData["cart"] = lstOD2;
             }
-            ord.price = p.ProPrice;
-
-            lstOD.Add(ord);
-
-            TempData["cart"] = lstOD;
             TempData.Keep();
             return RedirectToAction("Index");
             

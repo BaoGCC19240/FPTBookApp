@@ -3,46 +3,58 @@
     ViewBag.Title = "checkout";
 }
 
-<h2>checkout</h2>
+<h2>Checkout</h2>
 @if (TempData["cart"] != null)
 {
+    int total = 0;
 
+<table class="table table-responsive">
 
-    <table class="table table-responsive">
-
-        <thead>
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>BILL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in TempData["cart"] as List<FPTBookApp2.Models.product>)
+        {
+            int bill = @item.ProPrice * @item.ProQty;
             <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>QUANTITY</th>
-                <th>BILL</th>
+                <td>@item.ProName</td>
+
+                <td>@item.ProPrice</td>
+                <td>@Html.EditorFor(qty => item.ProQty)</td>
+                <td>@bill</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in TempData["cart"] as List<FPTBookApp2.Models.OrderDetail>)
-            {
+            total += bill;
+        }
 
-                <tr>
-                    <td>@item.ProID</td>
+    </tbody>
 
-                    <td>@item.price</td>
-                    <td>@item.qty</td>
+    <tfoot>
+        <tr>
+            <td colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right"><b>Total</b></td>
+            <td>@total</td>
+        </tr>
+    </tfoot>
 
 
-                </tr>
+</table>
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-success">@Html.ActionLink("Continue Shopping", "Index", "Home")</button>
+        <a href="#" class="btn btn-primary pull-right">Next</a>
 
-            }
-
-        </tbody>
-
-        <tfoot>
-            <tr>
-                <td colspan="4"></td>
-                <td>@TempData["total"]</td>
-
-            </tr>
-        </tfoot>
-
-    </table>
+    </div>
+</div>
+}
+else
+{
+    <h3>Cart is empty</h3>
 }

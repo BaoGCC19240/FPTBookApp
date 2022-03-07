@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\PhanBao\Desktop\Newfolder\FPTBookApp2\FPTBookApp2\Models\FPTdb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\Models\FPTdb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
