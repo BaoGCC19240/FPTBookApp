@@ -252,6 +252,7 @@
     <Content Include="Views\products\Index.cshtml" />
     <Content Include="Views\Foo\Sortbycat.cshtml" />
     <Content Include="Views\Foo\Search.cshtml" />
+    <Content Include="Views\Home\viewDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

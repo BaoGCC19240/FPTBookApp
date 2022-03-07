@@ -25,6 +25,11 @@ namespace FPTBookApp2.Controllers
             return PartialView("_Nav", db.categories);
         }
 
+        public ActionResult viewDetail(string id)
+        {
+            var obj = db.products.Find(id);
+            return View(obj);
+        }
 
 
     }

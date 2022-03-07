@@ -1,0 +1,27 @@
+﻿@model FPTBookApp2.Models.product
+@{
+    ViewBag.Title = "viewDetail";
+}
+
+<h2>Product Detail</h2>
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img src="~/Image/@Html.DisplayFor(model => model.ProImage)" width="100%" id="productImg">
+        </div>
+        <div class="col-2">
+            <h1>@Html.DisplayFor(model => model.ProName)</h1>
+            <h4>@Html.DisplayFor(model => model.ProPrice)$</h4>
+            <input type="number" value="1">
+            <a href="?page=cart?id= <?php ?>" class="btn">Add To Card</a>
+            <h3>
+                Description
+                <i class="fa fa-indent"></i>
+            </h3>
+            <br>
+            <p>
+                @Html.DisplayFor(model => model.ProDes)
+            </p>
+        </div>
+    </div>
+</div>
