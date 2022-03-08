@@ -78,7 +78,7 @@ namespace FPTBookApp2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CatID,CatName,CatDes")] category category)
+        public ActionResult Edit(category category)
         {
             if (ModelState.IsValid)
             {
@@ -91,23 +91,6 @@ namespace FPTBookApp2.Controllers
 
         // GET: categories/Delete/5
         public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            category category = db.categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
-        // POST: categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
         {
             category category = db.categories.Find(id);
             db.categories.Remove(category);

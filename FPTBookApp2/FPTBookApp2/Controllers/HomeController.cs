@@ -1,4 +1,4 @@
-﻿using FPTBookApp2.Models;
+﻿ using FPTBookApp2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +82,21 @@ namespace FPTBookApp2.Controllers
             
         }
 
+        public ActionResult deleteItem(string id)
+        {
+            List<product> cart = (List<product>)TempData["cart"];
+            for(int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].ProID.Equals(id))
+                {
+                    cart.RemoveAt(i);
+                }
+                
+            }
+            TempData["cart"] = cart;
+            return RedirectToAction("checkout");
+        }
+
         public ActionResult checkout()
         {
             TempData.Keep();
@@ -90,5 +105,51 @@ namespace FPTBookApp2.Controllers
             return View(); 
         }
 
+        public ActionResult Confirm()
+        {
+            //get User ID
+            string uid = Session["fullname"].ToString();
+            Order objOr = new Order();
+            objOr.AccID = uid;
+            objOr.Orderdate = DateTime.Now;
+            db.Orders.Add(objOr);
+            db.SaveChanges();
+            //get the cart content
+            List<product> cart = (List<product>)TempData["cart"];
+            foreach (product pro in (List<product>)TempData["cart"])
+            {
+                db.OrderDetails.Add(new OrderDetail {  ProID = pro.ProID, qty = pro.ProQty, price = pro.ProPrice,OrderID = objOr.OrderID});
+            }
+            db.SaveChanges();
+            TempData["AlertOrder"] = "Order success !!";
+            return RedirectToAction("Index", "Home");
+        }
+
+        protected void SetAlert(string text)
+        {
+            TempData["AlertMessage"] = text;
+        }
+
+        public ActionResult manageOrder(Order Order, OrderDetail OrderDetail)
+        {
+            string us = Session["fullname"].ToString();
+            var orders = db.Orders
+                .Where(o => o.AccID == us);
+            return View(orders) ;
+        }
+
+        public ActionResult detailOrder(int id)
+        {
+            
+            var lstOr = db.OrderDetails.Where(x => x.OrderID == id);
+            
+            return View(lstOr);
+        }
+
+        public ActionResult orderAdmin()
+        {
+            
+            return View(db.Orders);
+        }
     }
 }

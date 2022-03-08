@@ -72,16 +72,26 @@ namespace FPTBookApp2.Controllers
 
         }
 
-        public ActionResult Edit()
+        public ActionResult updateProfile(string id)
         {
-            return View();
+            var us = db.Accounts.Find(id);
+            return View(us);
         }
 
         [HttpPost]
-        public ActionResult Edit(Account acc)
+        public ActionResult updateProfile(Account acc)
         {
-
-            return View();
+            Account oldAcc = db.Accounts.Find(acc.AccID);
+            if (acc.pass != null)
+            {
+                oldAcc.pass = EncodePassword(acc.pass);
+            }
+            oldAcc.email = acc.email;
+            oldAcc.tel = acc.tel;
+            oldAcc.fullname = acc.fullname;
+            db.Entry(oldAcc).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index","Home");
         }
 
         public ActionResult Logout()
@@ -89,5 +99,7 @@ namespace FPTBookApp2.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
+       
     }
 }
