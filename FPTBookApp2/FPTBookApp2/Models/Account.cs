@@ -11,7 +11,8 @@ namespace FPTBookApp2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,19 @@ namespace FPTBookApp2.Models
         {
             this.Orders = new HashSet<Order>();
         }
-    
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Username")]
+        [Display(Name = "Username")]
         public string AccID { get; set; }
+        [Required(ErrorMessage = "Please enter the Password")]
+        [Display(Name = "Password")]
         public string pass { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Full name")]
+        [Display(Name = "Full Name")]
         public string fullname { get; set; }
+        [Required(ErrorMessage = "Please enter the Email")]
         public string email { get; set; }
+        [Required(ErrorMessage = "Please enter the Tel")]
         public string tel { get; set; }
         public Nullable<int> state { get; set; }
     

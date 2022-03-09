@@ -12,7 +12,8 @@ namespace FPTBookApp2.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Data.Entity.ModelConfiguration.Conventions;
+
     public partial class FPTdbEntities : DbContext
     {
         public FPTdbEntities()
@@ -22,7 +23,7 @@ namespace FPTBookApp2.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     
         public virtual DbSet<Account> Accounts { get; set; }

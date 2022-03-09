@@ -151,5 +151,16 @@ namespace FPTBookApp2.Controllers
             
             return View(db.Orders);
         }
+
+        public ActionResult delOrder(int id)
+        {
+
+            Order osa = db.Orders.Where(x=>x.OrderID==id).FirstOrDefault();
+            db.Orders.Remove(osa);
+            db.SaveChanges();
+            return RedirectToAction("orderAdmin");
+        }
+
+        
     }
 }

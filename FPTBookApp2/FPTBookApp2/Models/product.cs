@@ -16,16 +16,22 @@ namespace FPTBookApp2.Models
 
 
         [Display(Name = "Product ID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Product ID")]
         public string ProID { get; set; }
-        [Display(Name = "Name of product")]
+        [Display(Name = "Product Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Product Name")]
         public string ProName { get; set; }
         [Display(Name = "Image")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Product Image")]
         public string ProImage { get; set; }
         [Display(Name = "Price")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Product Price")]
         public int ProPrice { get; set; }
         [Display(Name = "Quantity")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Quantity")]
         public int ProQty { get; set; }
-        [Display(Name = "Description")]
+        [Display(Name = "Product Description")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the Product Description")]
         public string ProDes { get; set; }
         public string CatID { get; set; }
         public string auID { get; set; }
