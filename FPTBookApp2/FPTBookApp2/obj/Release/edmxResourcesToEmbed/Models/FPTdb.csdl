@@ -10,7 +10,7 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="state" Type="Int32" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__AccID__30F848ED" FromRole="Account" ToRole="Orders" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__AccID__778AC167" FromRole="Account" ToRole="Orders" />
   </EntityType>
   <EntityType Name="author">
     <Key>
@@ -35,23 +35,23 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="qty" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="product" Relationship="Self.FK__OrderDeta__ProID__2D27B809" FromRole="OrderDetails" ToRole="product" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__ID__300424B4" FromRole="OrderDetails" ToRole="Orders" />
+    <Property Name="OrderID" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="Self.FK__OrderDeta__ProID__73BA3083" FromRole="OrderDetails" ToRole="product" />
+    <NavigationProperty Name="Order" Relationship="Self.fk_Order" FromRole="OrderDetails" ToRole="Orders" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
-    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Orderdate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="AccID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Account" Relationship="Self.FK__Orders__AccID__30F848ED" FromRole="Orders" ToRole="Account" />
-    <NavigationProperty Name="OrderDetail" Relationship="Self.FK__Orders__ID__300424B4" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__Orders__AccID__778AC167" FromRole="Orders" ToRole="Account" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.fk_Order" FromRole="Orders" ToRole="OrderDetails" />
   </EntityType>
   <EntityType Name="product">
     <Key>
@@ -67,19 +67,9 @@
     <Property Name="auID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="author" Relationship="Self.FK__product__auID__2A4B4B5E" FromRole="product" ToRole="author" />
     <NavigationProperty Name="category" Relationship="Self.FK__product__CatID__29572725" FromRole="product" ToRole="category" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__ProID__2D27B809" FromRole="product" ToRole="OrderDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__ProID__73BA3083" FromRole="product" ToRole="OrderDetails" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK__Orders__AccID__30F848ED">
+  <Association Name="FK__Orders__AccID__778AC167">
     <End Role="Account" Type="Self.Account" Multiplicity="1" />
     <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
@@ -115,7 +105,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__ProID__2D27B809">
+  <Association Name="FK__OrderDeta__ProID__73BA3083">
     <End Role="product" Type="Self.product" Multiplicity="1" />
     <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -127,15 +117,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__ID__300424B4">
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+  <Association Name="fk_Order">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OrderDetails">
-        <PropertyRef Name="ID" />
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
       </Principal>
-      <Dependent Role="Orders">
-        <PropertyRef Name="ID" />
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -146,8 +136,7 @@
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="products" EntityType="Self.product" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK__Orders__AccID__30F848ED" Association="Self.FK__Orders__AccID__30F848ED">
+    <AssociationSet Name="FK__Orders__AccID__778AC167" Association="Self.FK__Orders__AccID__778AC167">
       <End Role="Account" EntitySet="Accounts" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
@@ -159,13 +148,13 @@
       <End Role="category" EntitySet="categories" />
       <End Role="product" EntitySet="products" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__ProID__2D27B809" Association="Self.FK__OrderDeta__ProID__2D27B809">
+    <AssociationSet Name="FK__OrderDeta__ProID__73BA3083" Association="Self.FK__OrderDeta__ProID__73BA3083">
       <End Role="product" EntitySet="products" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__ID__300424B4" Association="Self.FK__Orders__ID__300424B4">
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    <AssociationSet Name="fk_Order" Association="Self.fk_Order">
       <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

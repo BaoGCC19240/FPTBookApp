@@ -69,8 +69,8 @@
                         @if (Session["fullname"] == null)
                         {
 
-                            <li>@Html.ActionLink("Login", "Login", "Accounts",htmlAttributes:new {  @class="glyphicon glyphicon-user" })</li>
-                            <li>@Html.ActionLink("Register", "Register", "Accounts", htmlAttributes: new { @class = "glyphicon glyphicon-plus" })</li>
+                            <li>@Html.ActionLink("Login", "Login", "Accounts",null,htmlAttributes:new {  @class="glyphicon glyphicon-user" })</li>
+                            <li>@Html.ActionLink("Register", "Register", "Accounts",null, htmlAttributes: new { @class = "glyphicon glyphicon-plus" })</li>
 
                         }
                         else

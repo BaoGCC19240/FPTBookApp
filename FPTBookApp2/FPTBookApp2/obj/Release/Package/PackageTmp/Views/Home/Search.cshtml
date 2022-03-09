@@ -27,12 +27,12 @@
     {
         foreach (var item in Model)
         {
-            <div class="col-4">
-                <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="200" height="300">
-                <h4>@Html.DisplayFor(modelitem => item.ProName)</h4>
-                <p>@Html.DisplayFor(modelitem => item.ProPrice) $</p>
-                <a href="add.php?id=<?php echo $row['pro_id'];?>&action=add&page=index" class="btn">Buy Now &#8594;</a>
-            </div>
+    <div class="col-4">
+        <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="200" height="300">
+        <h4>@Html.DisplayFor(modelitem => item.ProName)</h4>
+        <p>@Html.DisplayFor(modelitem => item.ProPrice) $</p>
+        <button class="btn"> @Html.ActionLink("View Detail", "AddtoCart", new { id = item.ProID })</button>
+    </div>
         }
     }
 

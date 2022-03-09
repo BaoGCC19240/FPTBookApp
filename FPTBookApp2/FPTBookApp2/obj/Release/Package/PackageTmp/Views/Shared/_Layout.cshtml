@@ -25,7 +25,7 @@
                 </div>
                 <nav class="navbar navbar-light bg-light">
                     <div class="form-inline">
-                        @using (Html.BeginForm("Search", "Foo"))
+                        @using (Html.BeginForm("Search", "Home"))
                         {
                         <p>
                             <input class="form-control mr-sm-2" name="searchString" type="search" placeholder="Search" aria-label="Search">
@@ -41,7 +41,7 @@
                             @Html.ActionLink("Home", "Index", "Home")
                         </li>
                         @Html.Action("Nav", "Home")
-                        @if (Convert.ToInt32(Session["state"]) ==1)
+                        @if (Convert.ToInt32(Session["state"]) == 1)
                         {
                             <li>
                                 <div class="dropdowna">
@@ -53,6 +53,7 @@
                                         @Html.ActionLink("Manage Categories", "Index", "categories")
                                         @Html.ActionLink("Manage Products", "Index", "products")
                                         @Html.ActionLink("Manage Authors", "Index", "authors")
+                                        @Html.ActionLink("Manage Order", "orderAdmin", "Home")
 
                                     </div>
 
@@ -68,27 +69,39 @@
                         @if (Session["fullname"] == null)
                         {
 
-                            <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
-                            <li>@Html.ActionLink("Register", "Register", "Accounts")</li>
+                            <li>@Html.ActionLink("Login", "Login", "Accounts",null,htmlAttributes:new {  @class="glyphicon glyphicon-user" })</li>
+                            <li>@Html.ActionLink("Register", "Register", "Accounts",null, htmlAttributes: new { @class = "glyphicon glyphicon-plus" })</li>
 
                         }
                         else
                         {
                             <li>
-                                <a href="?page=update_customer">
-                                    <i class="fa fa-user" aria-hidden="true">
+
+                                <div class="dropdowna">
+                                    <button class="dropbtna">
                                         Hi, @Session["fullname"]
-                                    </i>
-                                </a>
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-contenta">
+                                        @Html.ActionLink("Update profile", "updateProfile", "Accounts", new { id = Convert.ToString(Session["fullname"]) },null)
+                                        @if (Convert.ToInt32(Session["state"]) != 1)
+                                        {
+                                            @Html.ActionLink("My Orders", "manageOrder", "Home")
+                                        }
+
+
+                                    </div>
+
+                                </div>
                             </li>
                             <li>@Html.ActionLink("Logout", "Logout", "Accounts")</li>
 
                         }
 
-
+                       <li><a href="@Url.Action("checkout","Home")"><img src="~/Image/cart.png" width="30px" height="30px"/></a></li> 
                     </ul>
                 </nav>
-                <h3 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-info">@Html.ActionLink("Check Out", "checkout", "Home")</span></h3>
+                
                 <img src="images/menu.png" class="menu-icon"
                      onclick="menutoggle()">
             </div>

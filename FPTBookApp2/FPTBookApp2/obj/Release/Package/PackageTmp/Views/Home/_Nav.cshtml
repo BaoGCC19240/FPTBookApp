@@ -8,7 +8,7 @@
         <div class="dropdown-contenta">
             @foreach (var item in Model)
             {
-                <a href="@Url.Action("Sortbycat","Foo", new {id = item.CatID})">@Html.DisplayFor(m => item.CatName)</a>
+                <a href="@Url.Action("Sortbycat","Home", new {id = item.CatID})">@Html.DisplayFor(m => item.CatName)</a>
             }
         </div>
 
