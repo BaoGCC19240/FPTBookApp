@@ -23,7 +23,7 @@
             <td align="center">@Html.DisplayFor(x => item.AccID)</td>
             <td align="center">@Html.DisplayFor(x => item.Orderdate)</td>
             <td align="center">
-                <a href="@Url.Action("delOrder", "Home", new { id=item.OrderID })"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="@Url.Action("delOrder", "Home", new { id = item.OrderID })" , onclick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-trash"></span></a>&nbsp&nbsp|&nbsp&nbsp
                 <a href="@Url.Action("detailOrder", "Home", new { id=item.OrderID })"><span class="glyphicon glyphicon-file"></span></a>
             </td>
         </tr>

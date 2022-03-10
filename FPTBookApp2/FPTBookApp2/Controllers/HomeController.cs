@@ -26,7 +26,6 @@ namespace FPTBookApp2.Controllers
         }
 
 
-
         public ActionResult Sortbycat(string id)
         {
             var res = db.products.Where(x => x.CatID == id);
@@ -71,13 +70,15 @@ namespace FPTBookApp2.Controllers
                 if(lstOD2.Find(x => x.ProID == id) != null)
                 {
                     product ch = lstOD2.Find(x => x.ProID == id);
-                    pr.ProQty = ch.ProQty + qty; ;
+                    pr.ProQty = ch.ProQty + qty;
+                    
                     lstOD2.Remove(ch);
                 }
                 lstOD2.Add(pr);
                 TempData["cart"] = lstOD2;
             }
             TempData.Keep();
+            Session["num"] = TempData["cart"].ToString().Split(',').Count();
             return RedirectToAction("Index");
             
         }

@@ -466,9 +466,8 @@ select:focus{
     margin-top: 20px;
 }
 .single-product input{
-    width: 50px;
+    width: 80px;
     height: 40px;
-    padding-left: 10px;
     font-size: 20px;
     margin-right: 10px;
     border: 1px solid #ff523f;
@@ -538,12 +537,7 @@ td img {
     width: 100%;
     max-width: 350px;
 }
-td:last-child{
-    text-align: right;
-}
-.th:last-child{
-    text-align: right;
-}
+
 
 
 /* -----------------------Account-page------------------ */

@@ -69,8 +69,8 @@
                         @if (Session["fullname"] == null)
                         {
 
-                            <li>@Html.ActionLink("Login", "Login", "Accounts",null,htmlAttributes:new {  @class="glyphicon glyphicon-user" })</li>
-                            <li>@Html.ActionLink("Register", "Register", "Accounts",null, htmlAttributes: new { @class = "glyphicon glyphicon-plus" })</li>
+                            <li>@Html.ActionLink("Login", "Login", "Accounts", null, htmlAttributes: new { @class = "glyphicon glyphicon-user" })</li>
+                            <li>@Html.ActionLink("Register", "Register", "Accounts", null, htmlAttributes: new { @class = "glyphicon glyphicon-plus" })</li>
 
                         }
                         else
@@ -83,7 +83,7 @@
                                         <i class="fa fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-contenta">
-                                        @Html.ActionLink("Update profile", "updateProfile", "Accounts", new { id = Convert.ToString(Session["fullname"]) },null)
+                                        @Html.ActionLink("Update profile", "updateProfile", "Accounts", new { id = Convert.ToString(Session["accid"]) }, null)
                                         @if (Convert.ToInt32(Session["state"]) != 1)
                                         {
                                             @Html.ActionLink("My Orders", "manageOrder", "Home")
@@ -98,7 +98,8 @@
 
                         }
 
-                       <li><a href="@Url.Action("checkout","Home")"><img src="~/Image/cart.png" width="30px" height="30px"/></a></li> 
+                       <li><a href="@Url.Action("checkout", "Home")">
+    <img src="~/Image/cart.png" width="30px" height="30px" /></a></li> 
                     </ul>
                 </nav>
                 

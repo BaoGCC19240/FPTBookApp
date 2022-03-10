@@ -158,7 +158,6 @@ C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\bin\System
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\bin\Newtonsoft.Json.xml
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\bin\Antlr3.Runtime.pdb
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.csproj.AssemblyReference.cache
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.csproj.CoreCompileInputs.cache
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.dll
 C:\Users\PhanBao\Desktop\1670\REPO\FPTBookApp\FPTBookApp2\FPTBookApp2\obj\Debug\FPTBookApp2.pdb

@@ -13,7 +13,7 @@
             <div class="col-2">
                 <h1>@Html.DisplayFor(model => model.ProName)</h1>
                 <h4>@Html.DisplayFor(model => model.ProPrice)$</h4>
-                <input type="number" value="1" name="qty">
+                <input type="number" value="1" name="qty" min="1" max="@Model.ProQty" />
                 <input class="btn" type="submit" value="Buy" />
                 <h3>
                     Description

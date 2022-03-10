@@ -26,13 +26,38 @@ namespace FPTBookApp2.Controllers
         [HttpPost]
         public ActionResult Register(Account acc)
         {
-            acc.pass = EncodePassword(acc.pass);
-            db.Accounts.Add(acc);
-            db.SaveChanges();
-            return RedirectToAction("Login");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // Disable entity validation
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    acc.pass = EncodePassword(acc.pass);
+                    db.Accounts.Add(acc);
+                    db.SaveChanges();
+                    // return Json(_user, JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("Login", "Accounts");
+                }
+                return View();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
         }
 
-        public static string EncodePassword(string originalPassword)
+            public static string EncodePassword(string originalPassword)
         {
             //Declarations
             Byte[] originalBytes;
@@ -64,6 +89,7 @@ namespace FPTBookApp2.Controllers
             if (obj != null)
             {
                 Session["fullname"] = obj.fullname;
+                Session["accid"] = obj.AccID;
                 Session["state"] = Convert.ToInt32(obj.state);
                 return RedirectToAction("Index", "Home");
             }
@@ -75,24 +101,49 @@ namespace FPTBookApp2.Controllers
         public ActionResult updateProfile(string id)
         {
             var us = db.Accounts.Find(id);
+
             return View(us);
         }
 
         [HttpPost]
         public ActionResult updateProfile(Account acc)
         {
+
+            try {   
+
             Account oldAcc = db.Accounts.Find(acc.AccID);
-            if (acc.pass != null)
-            {
-                oldAcc.pass = EncodePassword(acc.pass);
-            }
-            oldAcc.email = acc.email;
-            oldAcc.tel = acc.tel;
-            oldAcc.fullname = acc.fullname;
-            db.Entry(oldAcc).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index","Home");
+                if (acc.pass != null)
+                {
+                    acc.pass = EncodePassword(acc.pass);
+                }
+                else
+                {
+                    acc.pass = oldAcc.pass;
+                }    
+
+            db.Entry(oldAcc).State = EntityState.Detached;
+            db.Entry(acc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
         }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                        validationErrors.Entry.Entity.ToString(),
+                        validationError.ErrorMessage);
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            } 
+
+        }
+
 
         public ActionResult Logout()
         {
