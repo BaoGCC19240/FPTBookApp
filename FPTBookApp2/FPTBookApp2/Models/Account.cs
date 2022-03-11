@@ -40,7 +40,6 @@ namespace FPTBookApp2.Models
         public virtual ICollection<Order> Orders { get; set; }
         [NotMapped]
         [Display(Name ="Confirm Password")]
-        [System.ComponentModel.DataAnnotations.Compare("pass")]
         public string ConfirmPassword { get; set; }
     }
 }

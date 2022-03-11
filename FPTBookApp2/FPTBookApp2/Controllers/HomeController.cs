@@ -109,7 +109,7 @@ namespace FPTBookApp2.Controllers
         public ActionResult Confirm()
         {
             //get User ID
-            string uid = Session["fullname"].ToString();
+            string uid = Session["accid"].ToString();
             Order objOr = new Order();
             objOr.AccID = uid;
             objOr.Orderdate = DateTime.Now;
@@ -123,6 +123,7 @@ namespace FPTBookApp2.Controllers
             }
             db.SaveChanges();
             TempData["AlertOrder"] = "Order success !!";
+            TempData["cart"] = null;
             return RedirectToAction("Index", "Home");
         }
 

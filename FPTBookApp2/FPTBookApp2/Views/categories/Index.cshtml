@@ -18,22 +18,24 @@
             @Html.DisplayNameFor(model => model.CatDes)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatDes)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CatID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CatID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CatID }, new { onclick = "return confirm('Are you sure?');" })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CatName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CatDes)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.CatID })
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.CatID }, new { onclick = "return confirm('Are you sure?');" })
+    </td>
+</tr>
 }
 
 </table>
