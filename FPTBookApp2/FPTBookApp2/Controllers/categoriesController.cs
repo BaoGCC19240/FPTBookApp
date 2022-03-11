@@ -20,20 +20,6 @@ namespace FPTBookApp2.Controllers
             return View(db.categories.ToList());
         }
 
-        // GET: categories/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            category category = db.categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
 
         // GET: categories/Create
         public ActionResult Create()
@@ -41,12 +27,9 @@ namespace FPTBookApp2.Controllers
             return View();
         }
 
-        // POST: categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CatID,CatName,CatDes")] category category)
+        public ActionResult Create(category category)
         {
             if (ModelState.IsValid)
             {
@@ -73,9 +56,6 @@ namespace FPTBookApp2.Controllers
             return View(category);
         }
 
-        // POST: categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(category category)

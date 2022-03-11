@@ -5,11 +5,16 @@
 }
 
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (Session["imgErr"] != null)
+{
+    <div id="alertBox" class="alert alert-danger">
+        @Session["imgErr"]
 
+    </div>
+}
 <table class="table">
     <tr>
         <th>
@@ -37,36 +42,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProName)
-    </td>
-    <td>
-        <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="70px" height="100px" />
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProPrice)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProQty)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProDes)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.author.auName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.category.CatName)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ProID })
-    </td>
-    <td>
-        @Html.ActionLink("Delete", "Delete", new { id = item.ProID }, new { onclick = "return confirm('Are you sure?');" })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProName)
+            </td>
+            <td>
+                <img src="~/Image/@Html.DisplayFor(modelitem => item.ProImage)" width="70px" height="100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProDes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author.auName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.CatName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProID })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProID }, new { onclick = "return confirm('Are you sure?');" })
+            </td>
+        </tr>
+    }
 
 </table>

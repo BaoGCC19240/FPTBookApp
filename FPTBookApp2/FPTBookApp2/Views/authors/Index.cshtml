@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<FPTBookApp2.Models.author>
-
 @{
     ViewBag.Title = "Index";
 }
@@ -10,7 +9,6 @@
         $('#alertBox').delay(1000).slideUp(500);
 
     }
-
 </script>
 @if (TempData["AlertMessage"] != null)
 {
@@ -35,10 +33,8 @@
             @Html.DisplayNameFor(model => model.auDes)
         </th>
         <th>
-
         </th>
         <th>
-
         </th>
     </tr>
 
@@ -50,14 +46,12 @@
             </td>
             <td>
                 <img src="~/Image/@Html.DisplayFor(modelItem => item.auImage)" />
-
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.auDes)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.auID })
-                
+                @Html.ActionLink("Edit", "Edit", new { id = item.auID })                
             </td>
             <td>
                 @Html.ActionLink("Delete", "Delete", new { id = item.auID }, new { onclick = "return confirm('Are you sure?');" })

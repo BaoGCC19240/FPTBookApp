@@ -1,22 +1,16 @@
 ﻿@model FPTBookApp2.Models.Account
-
 @{
     ViewBag.Title = "Index";
 }
-
-
-
 @using (Html.BeginForm()) 
 {
-    @Html.AntiForgeryToken()
-    
+    @Html.AntiForgeryToken()  
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="control-group">
         <h2 id="lab">Register</h2>
     </div>
-
     <div class="form-group">
         @Html.Label("Username(*)", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -24,7 +18,6 @@
             @Html.ValidationMessageFor(model => model.AccID, "", new { @class = "text-danger", @placehoder = "Username" })
         </div>
     </div>
-
     <div class="form-group">
         @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -39,7 +32,6 @@
             <span id="message" class="text-danger"></span>
         </div>
     </div>
-
     <div class="form-group">
         @Html.Label("Full name", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -47,7 +39,6 @@
             @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger", @placehoder = "Full name" })
         </div>
     </div>
-
     <div class="form-group">
         @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -55,7 +46,6 @@
             @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger", @placehoder = "Email" })
         </div>
     </div>
-
     <div class="form-group">
         @Html.Label("Tel", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -63,7 +53,6 @@
             @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger", @placehoder = "Tel" })
         </div>
     </div>
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" onclick="return Validate()"/>
@@ -72,8 +61,6 @@
     </div>
 </div>
 }
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

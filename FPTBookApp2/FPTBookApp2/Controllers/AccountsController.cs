@@ -30,12 +30,10 @@ namespace FPTBookApp2.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // Disable entity validation
                     db.Configuration.ValidateOnSaveEnabled = false;
                     acc.pass = EncodePassword(acc.pass);
                     db.Accounts.Add(acc);
                     db.SaveChanges();
-                    // return Json(_user, JsonRequestBehavior.AllowGet);
                     return RedirectToAction("Login", "Accounts");
                 }
                 return View();
@@ -59,17 +57,12 @@ namespace FPTBookApp2.Controllers
 
             public static string EncodePassword(string originalPassword)
         {
-            //Declarations
             Byte[] originalBytes;
             Byte[] encodedBytes;
             MD5 md5;
-
-            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
             md5 = new MD5CryptoServiceProvider();
             originalBytes = System.Text.ASCIIEncoding.Default.GetBytes(originalPassword);
             encodedBytes = md5.ComputeHash(originalBytes);
-
-            //Convert encoded bytes back to a 'readable' string
             return BitConverter.ToString(encodedBytes);
         }
 
@@ -85,7 +78,8 @@ namespace FPTBookApp2.Controllers
         public ActionResult Login(string accid, string pass)
         {
             var ch_pass = EncodePassword(pass);
-            var obj = db.Accounts.Where(x => x.AccID.Equals(accid) && x.pass.Equals(ch_pass)).FirstOrDefault();
+            var obj = db.Accounts.Where
+                (x => x.AccID.Equals(accid) && x.pass.Equals(ch_pass)).FirstOrDefault();
             if (obj != null)
             {
                 Session["fullname"] = obj.fullname;
@@ -108,9 +102,7 @@ namespace FPTBookApp2.Controllers
         [HttpPost]
         public ActionResult updateProfile(Account acc)
         {
-
             try {   
-
             Account oldAcc = db.Accounts.Find(acc.AccID);
                 if (acc.pass != null)
                 {
@@ -120,7 +112,6 @@ namespace FPTBookApp2.Controllers
                 {
                     acc.pass = oldAcc.pass;
                 }    
-
             db.Entry(oldAcc).State = EntityState.Detached;
             db.Entry(acc).State = EntityState.Modified;
                 db.SaveChanges();

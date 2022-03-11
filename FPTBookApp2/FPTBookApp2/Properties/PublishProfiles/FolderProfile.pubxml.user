@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\FPTBookApp2</_PublishTargetUrl>
-    <History>True|2022-03-11T03:10:48.7167365Z;True|2022-03-11T09:41:04.1305432+07:00;True|2022-03-11T00:52:37.5262972+07:00;True|2022-03-11T00:51:17.4482095+07:00;True|2022-03-10T23:37:03.3246982+07:00;True|2022-03-10T20:41:38.2211202+07:00;True|2022-03-10T13:00:02.3733307+07:00;True|2022-03-09T09:16:10.3439301+07:00;True|2022-03-01T21:47:03.2678887+07:00;True|2022-03-01T21:00:36.3171768+07:00;True|2022-03-01T11:43:44.7957473+07:00;True|2022-02-26T13:57:34.4973602+07:00;True|2022-02-26T13:54:43.8730627+07:00;True|2022-02-26T13:52:46.4250513+07:00;True|2022-02-26T13:52:09.4391482+07:00;True|2022-02-26T13:51:24.7517434+07:00;True|2022-02-25T10:08:32.5915729+07:00;True|2022-02-25T09:55:00.4019948+07:00;True|2022-02-25T09:53:12.2234969+07:00;True|2022-02-25T09:32:27.6573851+07:00;True|2022-02-25T09:27:01.5370985+07:00;True|2022-02-25T09:26:58.5218413+07:00;</History>
+    <History>True|2022-03-11T03:59:25.9082597Z;True|2022-03-11T10:59:16.8362615+07:00;True|2022-03-11T10:10:48.7167365+07:00;True|2022-03-11T09:41:04.1305432+07:00;True|2022-03-11T00:52:37.5262972+07:00;True|2022-03-11T00:51:17.4482095+07:00;True|2022-03-10T23:37:03.3246982+07:00;True|2022-03-10T20:41:38.2211202+07:00;True|2022-03-10T13:00:02.3733307+07:00;True|2022-03-09T09:16:10.3439301+07:00;True|2022-03-01T21:47:03.2678887+07:00;True|2022-03-01T21:00:36.3171768+07:00;True|2022-03-01T11:43:44.7957473+07:00;True|2022-02-26T13:57:34.4973602+07:00;True|2022-02-26T13:54:43.8730627+07:00;True|2022-02-26T13:52:46.4250513+07:00;True|2022-02-26T13:52:09.4391482+07:00;True|2022-02-26T13:51:24.7517434+07:00;True|2022-02-25T10:08:32.5915729+07:00;True|2022-02-25T09:55:00.4019948+07:00;True|2022-02-25T09:53:12.2234969+07:00;True|2022-02-25T09:32:27.6573851+07:00;True|2022-02-25T09:27:01.5370985+07:00;True|2022-02-25T09:26:58.5218413+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -21,10 +21,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/23/2017 13:15:20</publishTime>
     </File>
     <File Include="bin/FPTBookApp2.dll">
-      <publishTime>03/11/2022 10:10:47</publishTime>
+      <publishTime>03/11/2022 10:59:25</publishTime>
     </File>
     <File Include="bin/FPTBookApp2.pdb">
-      <publishTime>03/11/2022 10:10:47</publishTime>
+      <publishTime>03/11/2022 10:59:25</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
@@ -372,7 +372,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2022 10:18:41</publishTime>
     </File>
     <File Include="Views/categories/Index.cshtml">
-      <publishTime>03/11/2022 10:05:13</publishTime>
+      <publishTime>03/11/2022 10:56:42</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>03/08/2022 10:18:42</publishTime>
@@ -408,7 +408,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2022 10:18:42</publishTime>
     </File>
     <File Include="Views/products/Create.cshtml">
-      <publishTime>03/08/2022 10:18:42</publishTime>
+      <publishTime>03/11/2022 10:57:24</publishTime>
     </File>
     <File Include="Views/products/Delete.cshtml">
       <publishTime>02/25/2022 08:38:43</publishTime>
@@ -420,7 +420,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2022 10:18:42</publishTime>
     </File>
     <File Include="Views/products/Index.cshtml">
-      <publishTime>03/11/2022 10:06:57</publishTime>
+      <publishTime>03/11/2022 10:57:04</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>03/08/2022 10:18:42</publishTime>

@@ -25,21 +25,6 @@ namespace FPTBookApp2.Controllers
             return View(products.ToList());
         }
 
-        // GET: products/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            product product = db.products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
         // GET: products/Create
         public ActionResult Create()
         {
@@ -53,20 +38,32 @@ namespace FPTBookApp2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(product product)
         {
-            if(product.myfile != null)
+            var allowedExtensions = new[] { ".png", ".jpg", ".jpeg", ".gif" };
+            var checkextension = Path.GetExtension(product.myfile.FileName).ToLower();
+            foreach(var itm in allowedExtensions)
             {
-                string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(product.myfile.FileName));
-                product.myfile.SaveAs(path);
-                product.ProImage =Path.GetFileName(product.myfile.FileName);
+                if (itm.Contains(checkextension))
+                {
+                    if (product.myfile != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Image/"), 
+                            Path.GetFileName(product.myfile.FileName));
+                        product.myfile.SaveAs(path);
+                        product.ProImage = Path.GetFileName(product.myfile.FileName);
+                    }
+                    db.products.Add(product);
+                    db.SaveChanges();
+
+                }
+                else
+                {
+                    Session["imgErr"] = "wrong image format";
+                }
             }
+            return RedirectToAction("Index");
 
 
-            db.products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            
 
-            
         }
 
         // GET: products/Edit/5
@@ -93,7 +90,8 @@ namespace FPTBookApp2.Controllers
             product old = db.products.Find(product.ProID);
             if (product.myfile != null)
             {
-                string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(product.myfile.FileName));
+                string path = Path.Combine(Server.MapPath("~/Image/"),
+                    Path.GetFileName(product.myfile.FileName));
                 product.myfile.SaveAs(path);
                 product.ProImage = Path.GetFileName(product.myfile.FileName);
             }

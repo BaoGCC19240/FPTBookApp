@@ -40,7 +40,8 @@ namespace FPTBookApp2.Controllers
             }
             else
             {
-                var res = db.products.Where(x => x.ProName.Contains(searchString));
+                var res = db.products.Where
+                    (x => x.ProName.Contains(searchString));
                 return View(res.ToList());
             }
 
@@ -101,8 +102,6 @@ namespace FPTBookApp2.Controllers
         public ActionResult checkout()
         {
             TempData.Keep();
-
-
             return View(); 
         }
 
@@ -119,7 +118,13 @@ namespace FPTBookApp2.Controllers
             List<product> cart = (List<product>)TempData["cart"];
             foreach (product pro in (List<product>)TempData["cart"])
             {
-                db.OrderDetails.Add(new OrderDetail {  ProID = pro.ProID, qty = pro.ProQty, price = pro.ProPrice,OrderID = objOr.OrderID});
+                db.OrderDetails.Add(new OrderDetail 
+                {
+                    ProID = pro.ProID,
+                    qty = pro.ProQty, 
+                    price = pro.ProPrice,
+                    OrderID = objOr.OrderID
+                });
             }
             db.SaveChanges();
             TempData["AlertOrder"] = "Order success !!";
@@ -134,7 +139,7 @@ namespace FPTBookApp2.Controllers
 
         public ActionResult manageOrder(Order Order, OrderDetail OrderDetail)
         {
-            string us = Session["fullname"].ToString();
+            string us = Session["accid"].ToString();
             var orders = db.Orders
                 .Where(o => o.AccID == us);
             return View(orders) ;
@@ -150,13 +155,11 @@ namespace FPTBookApp2.Controllers
 
         public ActionResult orderAdmin()
         {
-            
-            return View(db.Orders);
+           return View(db.Orders);
         }
 
         public ActionResult delOrder(int id)
         {
-
             Order osa = db.Orders.Where(x=>x.OrderID==id).FirstOrDefault();
             db.Orders.Remove(osa);
             db.SaveChanges();

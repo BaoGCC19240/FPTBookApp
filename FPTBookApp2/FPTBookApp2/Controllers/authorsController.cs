@@ -21,20 +21,6 @@ namespace FPTBookApp2.Controllers
             return View(db.authors.ToList());
         }
 
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            author author = db.authors.Find(id);
-            if (author == null)
-            {
-                return HttpNotFound();
-            }
-            return View(author);
-        }
-
         public ActionResult Create()
         {
             return View();
@@ -46,7 +32,8 @@ namespace FPTBookApp2.Controllers
         {
             if (author.ImageFile != null)
             {
-                string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
+                string path = Path.Combine(Server.MapPath("~/Image/"),
+                Path.GetFileName(author.ImageFile.FileName));
                 author.ImageFile.SaveAs(path);
                 author.auImage = Path.GetFileName(author.ImageFile.FileName);
             }
@@ -79,7 +66,8 @@ namespace FPTBookApp2.Controllers
                 author old = db.authors.Find(author.auID);
                 if (author.ImageFile != null)
                 {
-                    string path = Path.Combine(Server.MapPath("~/Image/"), Path.GetFileName(author.ImageFile.FileName));
+                    string path = Path.Combine(Server.MapPath("~/Image/"), 
+                    Path.GetFileName(author.ImageFile.FileName));
                     author.ImageFile.SaveAs(path);
                     author.auImage = Path.GetFileName(author.ImageFile.FileName);
                 }
@@ -95,12 +83,8 @@ namespace FPTBookApp2.Controllers
             }
             catch(Exception)
             {
-
                 return RedirectToAction("Index");
-            }
-
-                
-
+            }         
         }
 
 
